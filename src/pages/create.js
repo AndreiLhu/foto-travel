@@ -1,3 +1,4 @@
+import PlaceForm from '@/components/placeForm';
 import Link from 'next/link.js';
 import { useRouter } from 'next/router';
 
@@ -28,7 +29,7 @@ export default function CreatePlacePage() {
       <Link href="/" passHref legacyBehavior>
         <Link>back</Link>
       </Link>
-      <form onSubmit={addPlace} formName={'add-place'} />
+      <PlaceForm onSubmit={addPlace} formName={'add-place'} />
     </>
   );
 }

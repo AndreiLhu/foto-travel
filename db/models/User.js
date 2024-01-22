@@ -8,7 +8,7 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   image: String,
   description: String,
-  places: { type: [Schema.Types.ObjectId], ref: 'Place ' },
+  places: { type: [Schema.Types.ObjectId], ref: 'Place' },
   chatPartners: [String],
 });
 

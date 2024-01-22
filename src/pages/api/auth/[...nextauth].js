@@ -1,40 +1,25 @@
 import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
-import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
-import clientPromise from '../../../../lib/mongoose';
+import GithubProvider from 'next-auth/providers/github';
+import { MongoDBAdapter } from '@auth/mongodb-adapter';
+import clientPromise from '@/db/mongodb';
 
 export const authOptions = {
+  // Configure one or more authentication providers
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      authorization: {
-        params: {
-          prompt: 'consent',
-          access_type: 'offline',
-          response_type: 'code',
-        },
-      },
+    GithubProvider({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
     }),
+    // ...add more providers here
   ],
   adapter: MongoDBAdapter(clientPromise),
 
   callbacks: {
-    session: async ({ session, token }) => {
-      if (session?.user) {
-        session.user.id = token.uid;
-      }
+    async session({ session, user }) {
+      session.user.userId = user.id;
       return session;
     },
-    jwt: async ({ user, token }) => {
-      if (user) {
-        token.uid = user.id;
-      }
-      return token;
-    },
-  },
-  session: {
-    strategy: 'jwt',
   },
 };
+
 export default NextAuth(authOptions);

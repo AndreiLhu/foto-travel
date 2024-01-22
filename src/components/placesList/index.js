@@ -5,12 +5,12 @@ import Link from 'next/link';
 import Card from '../card';
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
-export default function ImagesList() {
+export default function PlacesList() {
   const router = useRouter();
-  const { data, error, isLoading } = useSWR('/api/places', fetcher);
-  // const { data, error, isLoading } = useSWR('/api/places', {
-  //   fallbackData: [],
-  // });
+  // const { data, error, isLoading } = useSWR('/api/places', fetcher);
+  const { data, error, isLoading } = useSWR('/api/places', fetcher, {
+    fallbackData: [],
+  });
 
   if (error) return <div>failed to load</div>;
   if (isLoading) return <h3>Loading...</h3>;

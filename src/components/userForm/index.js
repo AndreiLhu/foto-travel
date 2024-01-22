@@ -4,6 +4,9 @@ import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { useSession } from 'next-auth/react';
 import ImageUpload from '../imageUpload';
+
+const fetcher = (url) => fetch(url).then((r) => r.json());
+
 export default function UserForm({ buttonText, prevName, prevEmail, prevBio }) {
   const { data: session } = useSession();
   const users = useSWR('/api/users');
@@ -36,7 +39,7 @@ export default function UserForm({ buttonText, prevName, prevEmail, prevBio }) {
     }
   }
 
-  const { data: allUsers } = useSWR('/api/users');
+  const { data: allUsers } = useSWR('/api/users', fetcher);
   console.log('All users', allUsers);
 
   async function handleSubmit(e) {
@@ -104,7 +107,7 @@ export default function UserForm({ buttonText, prevName, prevEmail, prevBio }) {
           />
         </div>
       )}
-      <ImageUpload setUrl={setUrl} />
+      {/* <ImageUpload setUrl={setUrl} /> */}
       <div>
         <label htmlFor="description">Description:</label>
         <textarea
