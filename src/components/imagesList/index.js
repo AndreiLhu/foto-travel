@@ -1,11 +1,16 @@
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import Link from 'next/link';
+import Card from '../card';
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
 export default function ImagesList() {
   const router = useRouter();
   const { data, error, isLoading } = useSWR('/api/places', fetcher);
+  // const { data, error, isLoading } = useSWR('/api/places', {
+  //   fallbackData: [],
+  // });
 
   if (error) return <div>failed to load</div>;
   if (isLoading) return <h3>Loading...</h3>;
@@ -17,19 +22,25 @@ export default function ImagesList() {
   }
 
   return (
-    <ul>
-      {data.map((image) => (
-        <li key={image._id}>
-          <h2>{image.name}</h2>
-          <p>{image.location}</p>
-          <Image
-            src={image.image}
-            width={500}
-            height={500}
-            alt="Picture of the author"
-          />
-        </li>
-      ))}
-    </ul>
+    <>
+      <Link href="/create" passHref legacyBehavior>
+        + place
+      </Link>
+      <div role="list">
+        {data.map((place) => {
+          return (
+            <li key={place._id}>
+              <Card
+                name={place.name}
+                image={place.image}
+                location={place.location}
+                description={place.description}
+                id={`${place._id.$oid ?? place._id}`}
+              />
+            </li>
+          );
+        })}
+      </div>
+    </>
   );
 }
