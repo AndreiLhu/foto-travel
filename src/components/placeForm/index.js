@@ -8,7 +8,7 @@ export default function PlaceForm({ onSubmit, formName, defaultData }) {
   }
 
   return (
-    <div aria-labelledby={formName} onSubmit={handleSubmit}>
+    <form aria-labelledby={formName} onSubmit={handleSubmit}>
       <label htmlFor="name">Name</label>
       <input
         id="name"
@@ -48,6 +48,6 @@ export default function PlaceForm({ onSubmit, formName, defaultData }) {
       <button type="submit">
         {defaultData ? 'Update place' : 'Add place'}
       </button>
-    </div>
+    </form>
   );
 }
