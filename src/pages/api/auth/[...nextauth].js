@@ -11,7 +11,7 @@ export const authOptions = {
       clientSecret: process.env.GITHUB_SECRET,
       profile(profile) {
         return {
-          id: profile.id,
+          id: profile._id,
           // This ID is required but it will not be saved in your users collection
           name: profile.name,
           email: profile.email,
@@ -29,7 +29,7 @@ export const authOptions = {
 
   callbacks: {
     async session({ session, user }) {
-      session.user.userId = user.id;
+      session.user.userId = user._id;
       return session;
     },
   },

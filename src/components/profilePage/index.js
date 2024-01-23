@@ -1,5 +1,5 @@
-import SignIn from './sign-in';
 import ProfileInfo from './info';
+import SignIn from './sign-in';
 
 import { useSession } from 'next-auth/react';
 

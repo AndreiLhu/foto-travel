@@ -4,6 +4,7 @@ import AuthButton from '../sign-in';
 export default function ProfileInfo({ session }) {
   return (
     <>
+      <h1>User Profile</h1>
       <Image
         width={150}
         height={150}

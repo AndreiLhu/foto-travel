@@ -1,18 +1,30 @@
-import { Inter } from 'next/font/google';
-import styles from '@/styles/Home.module.css';
-import PlacesList from '@/components/placesList';
-import ImageUpload from '@/components/imageUpload';
-import Profile from '@/components/profilePage';
-
-const inter = Inter({ subsets: ['latin'] });
-
+import Card from '@/components/card';
+import Link from 'next/link';
+import useSWR from 'swr';
+const fetcher = (url) => fetch(url).then((r) => r.json());
 export default function Home() {
+  const { data } = useSWR('/api/places', fetcher, { fallbackData: [] });
+  console.log(data);
+
   return (
     <>
-      <h1>Home page</h1>
-      <Profile />
-      <ImageUpload />
-      <PlacesList />
+      <Link href="/create" passHref legacyBehavior>
+        + place
+      </Link>
+      <ul role="list">
+        {data.map((place) => {
+          return (
+            <li key={place._id}>
+              <Card
+                name={place.name}
+                image={place.image}
+                location={place.location}
+                id={`${place._id.$oid ?? place._id}`}
+              />
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 }
