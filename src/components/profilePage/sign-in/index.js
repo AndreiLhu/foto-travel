@@ -1,13 +1,12 @@
-import React from 'react';
-import { useSession, signIn, signOut } from 'next-auth/react';
 import Image from 'next/image';
+import { signOut, signIn, useSession } from 'next-auth/react';
 
-export default function Login() {
+export default function AuthButton() {
   const { data: session } = useSession();
 
   if (session) {
     return (
-      <div>
+      <>
         <h3>
           Welcome {session.user.name}!
           <Image
@@ -16,14 +15,13 @@ export default function Login() {
             style={{ width: '100px', borderRadius: '50%' }}
           />
         </h3>
-        <br />
         <button onClick={() => signOut()}>Sign out</button>
-      </div>
+      </>
     );
   }
   return (
     <>
-      <button onClick={() => signIn()}>Sign in with Google</button>
+      <button onClick={() => signIn()}>Sign in</button>
     </>
   );
 }

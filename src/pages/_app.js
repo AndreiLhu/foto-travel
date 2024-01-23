@@ -9,9 +9,7 @@ export default function App({
   return (
     <>
       <SessionProvider session={session}>
-        {/* <SWRConfig value={{ fetcher }}> */}
         <Component {...pageProps} />
-        {/* </SWRConfig> */}
       </SessionProvider>
     </>
   );

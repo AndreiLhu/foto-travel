@@ -9,7 +9,7 @@ const placeSchema = new Schema({
   image: { type: String, required: false },
   mapURL: { type: String, required: false },
   description: { type: String, required: false },
-  // comments: { type: [Schema.Types.ObjectId], ref: Comment },
+
   userId: { type: Schema.Types.ObjectId, ref: 'User' },
 });
 
