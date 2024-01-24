@@ -1,3 +1,4 @@
+import Layout from '@/components/layout';
 import '@/styles/globals.css';
 import { SessionProvider } from 'next-auth/react';
 import { SWRConfig } from 'swr';
@@ -9,7 +10,9 @@ export default function App({
   return (
     <>
       <SessionProvider session={session}>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </SessionProvider>
     </>
   );

@@ -3,6 +3,13 @@ import { useRouter } from 'next/router.js';
 import useSWR from 'swr';
 import Image from 'next/image.js';
 import Comments from '@/components/comments';
+import styled from 'styled-components';
+
+const ImageDetailsContainer = styled.div`
+  position: relative;
+  height: 15rem;
+`;
+
 const fetcher = (url) => fetch(url).then((r) => r.json());
 export default function DetailsPage() {
   const router = useRouter();
@@ -27,17 +34,9 @@ export default function DetailsPage() {
       <Link href={'/'} passHref legacyBehavior>
         <Link justifySelf="start">back</Link>
       </Link>
-      <div>
-        {/* <Image
-          src={place.image}
-          priority
-          fill
-          sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
-          alt=""
-        /> */}
-      </div>
+      <ImageDetailsContainer>
+        <Image src={place.image} fill alt=" images" />
+      </ImageDetailsContainer>
       <h2>
         {place.name}, {place.location}
       </h2>
