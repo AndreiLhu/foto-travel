@@ -7,7 +7,12 @@ import styled from 'styled-components';
 
 const ImageDetailsContainer = styled.div`
   position: relative;
-  height: 15rem;
+  height: 40rem;
+  width: 100%;
+`;
+const DetailsImage = styled(Image)`
+  height: auto;
+  width: 60em;
 `;
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
@@ -35,7 +40,7 @@ export default function DetailsPage() {
         <Link justifySelf="start">back</Link>
       </Link>
       <ImageDetailsContainer>
-        <Image src={place.image} fill alt=" images" />
+        <DetailsImage src={place.image} fill alt=" images" />
       </ImageDetailsContainer>
       <h2>
         {place.name}, {place.location}

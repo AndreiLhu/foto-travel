@@ -5,8 +5,12 @@ const NavigationContainer = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: white;
+  align-items: center;
   color: black;
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
 `;
 
 const SecondNavigationContainer = styled.div`
