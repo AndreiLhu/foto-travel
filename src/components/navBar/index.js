@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const NavigationContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 100%;
   background-color: white;
   color: black;
   padding: 20px;

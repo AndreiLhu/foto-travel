@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link.js';
 import styled from 'styled-components';
+import { FaArrowRightLong } from 'react-icons/fa6';
 
 const CardContainer = styled.div`
   position: relative;
@@ -15,13 +16,35 @@ const StyledImage = styled(Image)`
   object-fit: cover;
 `;
 const ImageContainer = styled.div`
-  height: 50rem;
+  height: 40rem;
+  width: 100%;
 `;
 
 const TextContainer = styled.div`
   position: absolute;
-  bottom: 8px;
-  right: 16px;
+  bottom: 20px;
+  left: 50px;
+  width: 75%;
+`;
+const Line = styled.div`
+  border-top: 1px solid white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  // width: 75%;
+`;
+
+const Name = styled.span`
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+`;
+const SpanInfo = styled.span`
+  font-size: 16px;
+  font-weight: 400;
+`;
+const Ancor = styled.a`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export default function Card({ name, image, location, id }) {
@@ -35,13 +58,17 @@ export default function Card({ name, image, location, id }) {
         />
       </ImageContainer>
       <TextContainer>
-        <figcaption>{name}</figcaption>
+        <Name>{name}</Name>
 
-        <p>Location: {location}</p>
+        <p>Located: {location}</p>
+        <Line></Line>
         <Link href={`places/${id}`} passHref legacyBehavior>
-          <a>
-            <span>More Info</span>
-          </a>
+          <Ancor>
+            <SpanInfo>MORE INFO</SpanInfo>
+            <span>
+              <FaArrowRightLong />
+            </span>
+          </Ancor>
         </Link>
       </TextContainer>
     </CardContainer>

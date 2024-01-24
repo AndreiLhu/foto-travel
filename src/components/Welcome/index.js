@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const WelcomeContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  background-color: black;
 `;
 
 const WelcomeTitle = styled.h1`
@@ -13,6 +14,7 @@ const WelcomeTitle = styled.h1`
   text-align: center;
   margin: auto;
   font-weight: 300;
+  color: white;
 `;
 
 const WelcomeImage = styled(Image)`

@@ -1,8 +1,25 @@
 import Card from '@/components/card';
 import Link from 'next/link';
 import useSWR from 'swr';
-const fetcher = (url) => fetch(url).then((r) => r.json());
 import React from 'react';
+import styled from 'styled-components';
+import { IoIosAddCircleOutline } from 'react-icons/io';
+
+const PlaceListContainer = styled.ul`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+`;
+const AddSpan = styled.span`
+  background-color: whitesmoke;
+  font-size: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: lightgray;
+`;
+
+const fetcher = (url) => fetch(url).then((r) => r.json());
 
 const PlacesList = () => {
   const { data } = useSWR('/api/places', fetcher, { fallbackData: [] });
@@ -10,10 +27,7 @@ const PlacesList = () => {
   return (
     <div>
       {' '}
-      <Link href="/create" passHref legacyBehavior>
-        + place
-      </Link>
-      <ul role="list">
+      <PlaceListContainer role="list">
         {data.map((place) => {
           return (
             <li key={place._id}>
@@ -26,7 +40,12 @@ const PlacesList = () => {
             </li>
           );
         })}
-      </ul>
+        <Link href="/create" passHref legacyBehavior>
+          <AddSpan>
+            <IoIosAddCircleOutline />
+          </AddSpan>
+        </Link>
+      </PlaceListContainer>
     </div>
   );
 };
