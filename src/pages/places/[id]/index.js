@@ -4,15 +4,31 @@ import useSWR from 'swr';
 import Image from 'next/image.js';
 import Comments from '@/components/comments';
 import styled from 'styled-components';
+import { FaEdit } from 'react-icons/fa';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 
 const ImageDetailsContainer = styled.div`
   position: relative;
   height: 40rem;
   width: 100%;
 `;
+
+const ButtonsContainer = styled.div`
+  position: absolute;
+  top: 110px;
+  right: 16px;
+`;
+
 const DetailsImage = styled(Image)`
   height: auto;
   width: 60em;
+`;
+const IconsSpan = styled.span`
+  font-size: 20px;
+`;
+
+const DescriptionContainer = styled.div`
+  background-color: lightblue;
 `;
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
@@ -42,21 +58,33 @@ export default function DetailsPage() {
       <ImageDetailsContainer>
         <DetailsImage src={place.image} fill alt=" images" />
       </ImageDetailsContainer>
-      <h2>
-        {place.name}, {place.location}
-      </h2>
+      <ButtonsContainer>
+        <button>
+          <Link href={`/places/${id}/edit`} passHref legacyBehavior>
+            <Link>
+              <IconsSpan>
+                <FaEdit />
+              </IconsSpan>
+            </Link>
+          </Link>
+        </button>
+        <button onClick={deletePlace} type="button" variant="delete">
+          <IconsSpan>
+            <RiDeleteBin6Line />
+          </IconsSpan>
+        </button>
+      </ButtonsContainer>
+      <DescriptionContainer>
+        <h2>
+          {place.name}, {place.location}
+        </h2>
+        <p>{place.description}</p>
+      </DescriptionContainer>
+
       <Link href={place.mapURL} passHref legacyBehavior>
         <Link>Location on Google Maps</Link>
       </Link>
-      <p>{place.description}</p>
-      <button>
-        <Link href={`/places/${id}/edit`} passHref legacyBehavior>
-          <Link>Edit</Link>
-        </Link>
-        <button onClick={deletePlace} type="button" variant="delete">
-          Delete
-        </button>
-      </button>
+
       <Comments
         locationName={place.name}
         comments={place.comments}

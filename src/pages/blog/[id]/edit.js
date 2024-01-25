@@ -1,22 +1,22 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import useSWR from 'swr';
-import PlaceForm from '@/components/placeForm';
+import ImageUpload from '@/components/imageUpl';
 
-export default function EditPage() {
+export default function EditBlog() {
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
-  const { data: place, isLoading, error, mutate } = useSWR(`/api/places/${id}`);
+  const { data: blog, isLoading, error, mutate } = useSWR(`/api/uploads/${id}`);
 
-  async function editPlace(place) {
+  async function editBlog(data) {
     try {
-      const response = await fetch(`/api/places/${id}`, {
+      const response = await fetch(`/api/uploads/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(place),
+        body: JSON.stringify(data),
       });
 
       if (response.ok) {
@@ -31,14 +31,14 @@ export default function EditPage() {
 
   return (
     <>
-      <h2 id="edit-place">Edit Place</h2>
-      <Link href={`/places/${id}`} passHref legacyBehavior>
+      <h2 id="edit-place">Edit blog</h2>
+      <Link href={`/uploads/${id}`} passHref legacyBehavior>
         <Link justifySelf="start">back</Link>
       </Link>
-      <PlaceForm
-        onSubmit={editPlace}
-        formName={'edit-place'}
-        defaultData={place}
+      <ImageUpload
+        onSubmit={editBlog}
+        formName={'edit-blog'}
+        defaultData={blog}
       />
     </>
   );
