@@ -5,9 +5,19 @@ export default async function handler(request, response) {
   await dbConnect();
 
   if (request.method === 'GET') {
-    const jokes = await Place.find();
-    return response.status(200).json(jokes);
-  } else {
-    return response.status(405).json({ message: 'Method not allowed' });
+    const places = await Place.find();
+
+    return response.status(200).json(places);
+  }
+
+  if (request.method === 'POST') {
+    try {
+      const placeData = request.body;
+      await Place.create(placeData);
+
+      return response.status(201).json({ status: 'Place created.' });
+    } catch (error) {
+      return response.status(500).json({ error: error.message });
+    }
   }
 }
