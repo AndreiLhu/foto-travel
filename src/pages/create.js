@@ -1,7 +1,19 @@
 import PlaceForm from '@/components/placeForm';
 import Link from 'next/link.js';
-
 import { useRouter } from 'next/router';
+import styled from 'styled-components';
+import { TbArrowBackUp } from 'react-icons/tb';
+
+const AddPlaceTitle = styled.h2`
+  margin-top: 20px;
+  text-align: center;
+`;
+const BackLink = styled(Link)`
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+`;
 
 export default function CreatePlacePage() {
   const router = useRouter();
@@ -26,9 +38,11 @@ export default function CreatePlacePage() {
 
   return (
     <>
-      <h2 id="add-place">Add Place</h2>
+      <AddPlaceTitle id="add-place">Add new place</AddPlaceTitle>
       <Link href="/" passHref legacyBehavior>
-        <Link>back</Link>
+        <BackLink>
+          <TbArrowBackUp />
+        </BackLink>
       </Link>
       <PlaceForm onSubmit={addPlace} formName={'add-place'} />
     </>
