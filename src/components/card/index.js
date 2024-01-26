@@ -30,7 +30,6 @@ const Line = styled.div`
   border-top: 1px solid white;
   margin-top: 5px;
   margin-bottom: 5px;
-  // width: 75%;
 `;
 
 const Name = styled.span`

@@ -4,8 +4,9 @@ import useSWR from 'swr';
 import Image from 'next/image.js';
 import Comments from '@/components/comments';
 import styled from 'styled-components';
-import { FaEdit } from 'react-icons/fa';
+import { TbEdit } from 'react-icons/tb';
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import { TbArrowBackUp } from 'react-icons/tb';
 
 const ImageDetailsContainer = styled.div`
   position: relative;
@@ -15,8 +16,8 @@ const ImageDetailsContainer = styled.div`
 
 const ButtonsContainer = styled.div`
   position: absolute;
-  top: 110px;
-  right: 16px;
+  top: 100px;
+  left: 20px;
 `;
 
 const DetailsImage = styled(Image)`
@@ -27,8 +28,21 @@ const IconsSpan = styled.span`
   font-size: 20px;
 `;
 
+const ImageDescriptionContainer = styled.div`
+  display: flex;
+  background-color: whitesmoke;
+`;
 const DescriptionContainer = styled.div`
-  background-color: lightblue;
+  font-size: 20px;
+  text-align: left;
+  font-weight: 300;
+  width: 70%;
+  padding-left: 50px;
+  padding-right: 50px;
+`;
+const DetailsTitle = styled.h2`
+  font-size: 30px;
+  margin-bottom: 20px;
 `;
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
@@ -52,39 +66,46 @@ export default function DetailsPage() {
   }
   return (
     <>
-      <Link href={'/'} passHref legacyBehavior>
-        <Link justifySelf="start">back</Link>
-      </Link>
-      <ImageDetailsContainer>
-        <DetailsImage src={place.image} fill alt=" images" />
-      </ImageDetailsContainer>
-      <ButtonsContainer>
-        <button>
-          <Link href={`/places/${id}/edit`} passHref legacyBehavior>
-            <Link>
-              <IconsSpan>
-                <FaEdit />
-              </IconsSpan>
+      {' '}
+      <ImageDescriptionContainer>
+        <ImageDetailsContainer>
+          <DetailsImage src={place.image} fill alt=" images" />
+        </ImageDetailsContainer>
+        <ButtonsContainer>
+          <button>
+            <Link href={'/'} passHref legacyBehavior>
+              <Link>
+                <IconsSpan>
+                  <TbArrowBackUp />
+                </IconsSpan>
+              </Link>
             </Link>
-          </Link>
-        </button>
-        <button onClick={deletePlace} type="button" variant="delete">
-          <IconsSpan>
-            <RiDeleteBin6Line />
-          </IconsSpan>
-        </button>
-      </ButtonsContainer>
-      <DescriptionContainer>
-        <h2>
-          {place.name}, {place.location}
-        </h2>
-        <p>{place.description}</p>
-      </DescriptionContainer>
-
+          </button>
+          <button>
+            <Link href={`/places/${id}/edit`} passHref legacyBehavior>
+              <Link>
+                <IconsSpan>
+                  <TbEdit />
+                </IconsSpan>
+              </Link>
+            </Link>
+          </button>
+          <button onClick={deletePlace} type="button" variant="delete">
+            <IconsSpan>
+              <RiDeleteBin6Line />
+            </IconsSpan>
+          </button>
+        </ButtonsContainer>
+        <DescriptionContainer>
+          <DetailsTitle>
+            {place.name}, {place.location}
+          </DetailsTitle>
+          <p>{place.description}</p>
+        </DescriptionContainer>
+      </ImageDescriptionContainer>
       <Link href={place.mapURL} passHref legacyBehavior>
         <Link>Location on Google Maps</Link>
       </Link>
-
       <Comments
         locationName={place.name}
         comments={place.comments}
