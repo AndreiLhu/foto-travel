@@ -106,7 +106,14 @@ export default function DetailsPage() {
             {place.name}, {place.location}
           </DetailsTitle>
           <p>{place.description}</p>
-          <Link href={place.mapURL} passHref legacyBehavior>
+
+          {/* {session ? <ProfileInfo session={session} /> : <SignIn />} */}
+
+          <Link
+            href={place.mapURL ? place.mapURL : '/'}
+            passHref
+            legacyBehavior
+          >
             <MapLink>See location on Google Maps </MapLink>
           </Link>
         </DescriptionContainer>
