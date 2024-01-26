@@ -33,6 +33,7 @@ const ImageDescriptionContainer = styled.div`
   background-color: whitesmoke;
 `;
 const DescriptionContainer = styled.div`
+  position: relative;
   font-size: 20px;
   text-align: left;
   font-weight: 300;
@@ -43,6 +44,10 @@ const DescriptionContainer = styled.div`
 const DetailsTitle = styled.h2`
   font-size: 30px;
   margin-bottom: 20px;
+`;
+const MapLink = styled(Link)`
+  position: absolute;
+  bottom: 20px;
 `;
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
@@ -101,11 +106,11 @@ export default function DetailsPage() {
             {place.name}, {place.location}
           </DetailsTitle>
           <p>{place.description}</p>
+          <Link href={place.mapURL} passHref legacyBehavior>
+            <MapLink>See location on Google Maps </MapLink>
+          </Link>
         </DescriptionContainer>
       </ImageDescriptionContainer>
-      <Link href={place.mapURL} passHref legacyBehavior>
-        <Link>Location on Google Maps</Link>
-      </Link>
       <Comments
         locationName={place.name}
         comments={place.comments}

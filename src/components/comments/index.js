@@ -1,4 +1,33 @@
+import styled from 'styled-components';
 import { Comment } from '../comment';
+
+const CommentsContainer = styled.div`
+  max-width: 700px;
+  margin-left: 50px;
+  text-align: center;
+`;
+
+const CommentsTitle = styled.h2`
+  margin-bottom: 10px;
+`;
+
+const CommentsInput = styled.input`
+  height: 30px;
+  margin: 5px;
+`;
+const CommentsLabel = styled.label`
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+`;
+const CommentButton = styled.button`
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  background-color: transparent;
+  width: 200px;
+  align-self: center;
+`;
 
 export default function Comments({ id, locationName, comments, mutate }) {
   async function handleSubmitComment(e) {
@@ -42,22 +71,24 @@ export default function Comments({ id, locationName, comments, mutate }) {
   }
 
   return (
-    <div>
+    <CommentsContainer>
       <form onSubmit={handleSubmitComment}>
-        <label htmlFor="name">Your Name</label>
-        <input type="text" name="name" placeholder="name" required />
-        <label htmlFor="comment">Your Comment</label>
-        <input
+        <CommentsTitle>Write your comment here</CommentsTitle>
+        <CommentsLabel htmlFor="name">Your Name</CommentsLabel>
+        <CommentsInput type="text" name="name" placeholder="name" required />
+        <CommentsLabel htmlFor="comment">Your Comment</CommentsLabel>
+        <CommentsInput
           type="text"
           name="comment"
           placeholder="comment here..."
           required
         />
-        <button type="submit">Send</button>
+        <CommentButton type="submit">Post</CommentButton>
       </form>
+
       {comments && (
         <>
-          <h1> {comments.length} fan(s) commented on this place:</h1>
+          <h2> {comments.length} fan(s) commented on this place:</h2>
           {comments.map(({ _id, name, comment }) => {
             return (
               <Comment
@@ -73,6 +104,6 @@ export default function Comments({ id, locationName, comments, mutate }) {
           })}
         </>
       )}
-    </div>
+    </CommentsContainer>
   );
 }

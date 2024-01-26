@@ -33,7 +33,7 @@ export default function EditBlog() {
     <>
       <h2 id="edit-place">Edit blog</h2>
       <Link href={`/uploads/${id}`} passHref legacyBehavior>
-        <Link justifySelf="start">back</Link>
+        <Link>back</Link>
       </Link>
       <ImageUpload
         onSubmit={editBlog}

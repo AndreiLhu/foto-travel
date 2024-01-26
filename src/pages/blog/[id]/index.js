@@ -27,7 +27,7 @@ export default function Blog() {
   return (
     <>
       <Link href={'/'} passHref legacyBehavior>
-        <Link justifySelf="start">back</Link>
+        <Link>back</Link>
       </Link>
       <div>
         <Image src={image.imagePath} fill alt=" images" />
