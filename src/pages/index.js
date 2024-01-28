@@ -1,4 +1,4 @@
-import Welcome from '@/components/welcome';
+import Welcome from '../components/welcome/index';
 import PlacesList from '@/components/placesList';
 import useSWR from 'swr';
 
