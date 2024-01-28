@@ -1,7 +1,19 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import useSWR from 'swr';
-import { Form } from 'react-router-dom';
+import PlaceForm from '@/components/placeForm';
+import { TbArrowBackUp } from 'react-icons/tb';
+import styled from 'styled-components';
+const EditPlaceTitle = styled.h2`
+  margin-top: 20px;
+  text-align: center;
+`;
+const EditBackLink = styled(Link)`
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+`;
 
 export default function EditPage() {
   const router = useRouter();
@@ -31,11 +43,17 @@ export default function EditPage() {
 
   return (
     <>
-      <h2 id="edit-place">Edit Place</h2>
+      <EditPlaceTitle id="edit-place">Edit Place</EditPlaceTitle>
       <Link href={`/places/${id}`} passHref legacyBehavior>
-        <Link justifySelf="start">back</Link>
+        <EditBackLink>
+          <TbArrowBackUp />
+        </EditBackLink>
       </Link>
-      <Form onSubmit={editPlace} formName={'edit-place'} defaultData={place} />
+      <PlaceForm
+        onSubmit={editPlace}
+        formName={'edit-place'}
+        defaultData={place}
+      />
     </>
   );
 }

@@ -1,4 +1,16 @@
 import { useState } from 'react';
+import { TbEdit } from 'react-icons/tb';
+import { RiDeleteBin6Line } from 'react-icons/ri';
+import styled from 'styled-components';
+
+const CommentIconButton = styled.button`
+  font-size: 15px;
+`;
+const CommentText = styled.h4`
+  font-weight: 300;
+  background-color: whitesmoke;
+  font-size: 18px;
+`;
 
 export const Comment = ({
   id,
@@ -29,7 +41,7 @@ export const Comment = ({
     }
   };
   return showCommentEditInput ? (
-    <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+    <form onSubmit={handleSubmit}>
       <textarea
         style={{ width: '100%' }}
         name="comment"
@@ -41,13 +53,15 @@ export const Comment = ({
   ) : (
     <div>
       <p>
-        <small>
-          <strong>{name}</strong> commented on {locationName}
-        </small>
+        <strong>{name}</strong> commented on {locationName}
       </p>
-      <p>{comment}</p>
-      <button onClick={() => setShowCommentEditInput(true)}>Edit</button>
-      <button onClick={handleDeleteComment}>Delete</button>
+      <CommentText>{comment}</CommentText>
+      <CommentIconButton onClick={() => setShowCommentEditInput(true)}>
+        <TbEdit />
+      </CommentIconButton>
+      <CommentIconButton onClick={handleDeleteComment}>
+        <RiDeleteBin6Line />
+      </CommentIconButton>
     </div>
   );
 };

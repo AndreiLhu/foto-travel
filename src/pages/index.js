@@ -1,11 +1,10 @@
 import Welcome from '@/components/welcome';
 import PlacesList from '@/components/placesList';
-import ImageUpload from '@/components/imageUpload';
+import useSWR from 'swr';
 
 export default function Home() {
   return (
     <>
-      <ImageUpload />
       <Welcome />
       <PlacesList />
     </>

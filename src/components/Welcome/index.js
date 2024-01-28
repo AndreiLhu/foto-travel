@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import aurora from '../../../public/norway-aurora.jpg';
+import aurora from '../../../public/car-aurora.jpg';
 import styled from 'styled-components';
 const WelcomeContainer = styled.div`
   display: flex;

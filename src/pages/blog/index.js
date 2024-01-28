@@ -1,7 +1,14 @@
+import BlogForm from '@/components/blogForm';
+import BlogList from '@/components/blogList';
 import React from 'react';
 
-const Blog = () => {
-  return <div>Blog</div>;
+const Blogs = () => {
+  return (
+    <div>
+      <BlogForm />
+      <BlogList />
+    </div>
+  );
 };
 
-export default Blog;
+export default Blogs;
