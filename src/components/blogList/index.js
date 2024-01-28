@@ -1,32 +1,25 @@
-// import Link from 'next/link';
-// import useSWR from 'swr';
-// import React from 'react';
-// import styled from 'styled-components';
-// import Image from 'next/image';
+import useSWR from 'swr';
+import Link from 'next/link';
+const fetcher = (url) => fetch(url).then((response) => response.json());
+export default function BlogList() {
+  const { data, isLoading } = useSWR('/api/blogs', fetcher);
 
-// const fetcher = (url) => fetch(url).then((r) => r.json());
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
 
-// const BlogList = () => {
-//   const { data } = useSWR('/api/uploads', fetcher, { fallbackData: [] });
-//   console.log(data);
-//   return (
-//     <div>
-//       {' '}
-//       <div role="list">
-//         {data.map((image) => {
-//           return (
-//             <li key={image._id}>
-//               <div>
-//                 <Image src={image.imagePath} fill alt=" images" />
-//               </div>
+  if (!data) {
+    return;
+  }
 
-//               <p>{image.description}</p>
-//             </li>
-//           );
-//         })}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default BlogList;
+  return (
+    <ul>
+      {data.map((blog) => (
+        <li key={blog._id}>
+          <Link href={`/${blog._id}`}>{blog.title}</Link>
+          <h3>{blog.content}</h3>
+        </li>
+      ))}
+    </ul>
+  );
+}
