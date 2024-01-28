@@ -14,4 +14,10 @@ export default async function handler(request, response) {
 
     return response.status(200).json(blog);
   }
+
+  if (request.method === 'DELETE') {
+    await Blog.findByIdAndDelete(id);
+
+    response.status(200).json({ message: 'Success!' });
+  }
 }
