@@ -7,6 +7,7 @@ export default function BlogForm() {
     event.preventDefault();
     const formData = new FormData(event.target);
     const blogData = Object.fromEntries(formData);
+    event.target.reset();
 
     const response = fetch('/api/blogs', {
       method: 'POST',

@@ -7,6 +7,6 @@ const blogSchema = new Schema({
   create_at: { type: Date, default: Date.now },
 });
 
-const Blog = models.Post || model('Blog', blogSchema);
+const Blog = models.Blog || model('Blog', blogSchema);
 
 export default Blog;
