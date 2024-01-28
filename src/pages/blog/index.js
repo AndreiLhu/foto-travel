@@ -2,14 +2,13 @@ import BlogForm from '@/components/blogForm';
 import BlogList from '@/components/blogList';
 import React from 'react';
 
-const Blog = () => {
+const Blogs = () => {
   return (
     <div>
-      Blog
       <BlogForm />
       <BlogList />
     </div>
   );
 };
 
-export default Blog;
+export default Blogs;

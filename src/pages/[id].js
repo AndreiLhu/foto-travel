@@ -2,7 +2,7 @@ import useSWR from 'swr';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 const fetcher = (url) => fetch(url).then((response) => response.json());
-export default function Blog() {
+export default function BlogDetails() {
   const router = useRouter();
   const { id } = router.query;
 
@@ -18,9 +18,10 @@ export default function Blog() {
 
   return (
     <>
-      <small>ID: {id}</small>
-      <h1>{data.blog} </h1>
-      <Link href="/">Back to all</Link>
+      <h1>{data.title} </h1>
+      <h3>{data.content} </h3>
+
+      <Link href="/blog">Back to all</Link>
     </>
   );
 }

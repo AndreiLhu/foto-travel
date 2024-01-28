@@ -107,8 +107,6 @@ export default function DetailsPage() {
           </DetailsTitle>
           <p>{place.description}</p>
 
-          {/* {session ? <ProfileInfo session={session} /> : <SignIn />} */}
-
           <Link
             href={place.mapURL ? place.mapURL : '/'}
             passHref

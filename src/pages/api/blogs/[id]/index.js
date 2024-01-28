@@ -1,5 +1,5 @@
-import dbConnect from '../../../../db/connect';
-import Blog from '../../../../db/models/Blog';
+import dbConnect from '../../../../../db/connect';
+import Blog from '../../../../../db/models/Blog';
 
 export default async function handler(request, response) {
   await dbConnect();
@@ -9,9 +9,9 @@ export default async function handler(request, response) {
     const blog = await Blog.findById(id);
 
     if (!blog) {
-      return response.status(404).json({ status: 'Not Found' });
+      return response.status(404).json({ status: 'Not found' });
     }
 
-    response.status(200).json(blog);
+    return response.status(200).json(blog);
   }
 }
