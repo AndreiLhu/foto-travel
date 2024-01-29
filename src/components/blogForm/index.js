@@ -1,5 +1,34 @@
+import styled from 'styled-components';
 import useSWR from 'swr';
 const fetcher = (url) => fetch(url).then((response) => response.json());
+
+const BlogContainer = styled.form`
+  width: 500px;
+  height: 100%;
+  font-size: 20px;
+`;
+
+const BlogLabel = styled.label`
+  display: flex;
+  margin-top: 10px;
+`;
+const BlogInput = styled.input`
+  margin-top: 10px;
+  width: 100%;
+  height: 50px;
+`;
+
+const BlogTextarea = styled.input`
+  margin-top: 10px;
+  width: 100%;
+  height: 50px;
+`;
+
+const BlogSubmit = styled.button`
+  font-size: 20px;
+  margin-top: 10px;
+`;
+
 export default function BlogForm() {
   const { mutate } = useSWR('/api/blogs', fetcher);
 
@@ -22,12 +51,25 @@ export default function BlogForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="title">Title</label>
-      <input id="title" name="title" type="text" />
-      <label htmlFor="content">Write your blog</label>
-      <textarea name="content" id="content" cols="30" rows="10"></textarea>
-      <button>submit</button>
-    </form>
+    <BlogContainer onSubmit={handleSubmit}>
+      <h2>Write your blog here: </h2>
+      <div>
+        <BlogLabel htmlFor="title">Title</BlogLabel>
+        <BlogInput id="title" name="title" type="text" />
+      </div>
+      <div>
+        <BlogLabel htmlFor="content">Content</BlogLabel>
+        <BlogTextarea
+          name="content"
+          id="content"
+          cols="90"
+          rows="30"
+          placeholder="Blog content here..."
+          maxlength="500"
+          required
+        ></BlogTextarea>
+        <BlogSubmit>submit</BlogSubmit>
+      </div>
+    </BlogContainer>
   );
 }
