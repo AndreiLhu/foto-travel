@@ -4,12 +4,13 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import styled from 'styled-components';
 
 const CommentIconButton = styled.button`
-  font-size: 15px;
+  font-size: 20px;
 `;
 const CommentText = styled.h4`
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-weight: 300;
-  background-color: whitesmoke;
-  font-size: 18px;
+  font-size: 20px;
 `;
 
 export const Comment = ({

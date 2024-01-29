@@ -11,13 +11,13 @@ const MainPlaceForm = styled.form`
 
 const PlaceInput = styled.input`
   height: 30px;
-  border: px solid gray;
+  border: 1px solid gray;
+  margin-top: 10px;
 `;
 const PlaceLabel = styled.label`
   text-align: center;
   padding: 5px;
-  background-color: whitesmoke;
-  font-size: 20px;
+  font-size: 25px;
 `;
 const SubmitButton = styled.button`
   font-size: 20px;
