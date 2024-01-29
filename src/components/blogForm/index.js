@@ -65,7 +65,7 @@ export default function BlogForm() {
           cols="90"
           rows="30"
           placeholder="Blog content here..."
-          maxlength="500"
+          maxLength="500"
           required
         ></BlogTextarea>
         <BlogSubmit>submit</BlogSubmit>

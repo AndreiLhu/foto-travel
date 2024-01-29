@@ -1,9 +1,9 @@
-import AuthButton from '@/components/auth-button';
+// import AuthButton from '@/components/auth-button';
 
-export default function SignIn() {
-  return (
-    <div>
-      <AuthButton />
-    </div>
-  );
-}
+// export default function SignIn() {
+//   return (
+//     <div>
+//       <AuthButton />
+//     </div>
+//   );
+// }
