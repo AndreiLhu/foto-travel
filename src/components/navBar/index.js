@@ -33,7 +33,12 @@ export default function Navbar() {
         </h3>
       </SecondNavigationContainer>
       <h2>
-        <Link href="/profile-page">Login</Link>
+        <Link
+          href="https://media.tenor.com/8jlC25Qb-jEAAAAC/spiderman-funny.gif"
+          target="blank"
+        >
+          Login
+        </Link>
       </h2>
     </NavigationContainer>
   );
