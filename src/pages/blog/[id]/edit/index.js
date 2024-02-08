@@ -23,7 +23,8 @@ export default function EditPage() {
       });
 
       if (response.ok) {
-        mutate();
+        // mutate();
+        router.push(`/blog/${id}`);
       }
     } catch (error) {
       console.log(error.message);
