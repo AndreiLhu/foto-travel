@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import useSWR from 'swr';
-const fetcher = (url) => fetch(url).then((response) => response.json());
 
 const BlogContainer = styled.form`
   width: 500px;
@@ -29,33 +27,28 @@ const BlogSubmit = styled.button`
   margin-top: 10px;
 `;
 
-export default function BlogForm() {
-  const { mutate } = useSWR('/api/blogs', fetcher);
-
-  const handleSubmit = async (event) => {
+export default function BlogForm({ onSubmit, blogFormName, defaultData }) {
+  function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const blogData = Object.fromEntries(formData);
-    event.target.reset();
+    const data = Object.fromEntries(formData);
+    console.log('onsubmit', typeof onSubmit);
+    onSubmit(data);
 
-    const response = fetch('/api/blogs', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(blogData),
-    });
-    if (response.ok) {
-      mutate();
-    }
-  };
+    event.target.reset();
+  }
 
   return (
-    <BlogContainer onSubmit={handleSubmit}>
+    <BlogContainer aria-labelledby={blogFormName} onSubmit={handleSubmit}>
       <h2>Write your blog here: </h2>
       <div>
         <BlogLabel htmlFor="title">Title</BlogLabel>
-        <BlogInput id="title" name="title" type="text" />
+        <BlogInput
+          id="title"
+          name="title"
+          type="text"
+          defaultValue={defaultData?.title}
+        />
       </div>
       <div>
         <BlogLabel htmlFor="content">Content</BlogLabel>
@@ -66,9 +59,12 @@ export default function BlogForm() {
           rows="30"
           placeholder="Blog content here..."
           maxLength="500"
+          defaultValue={defaultData?.content}
           required
         ></BlogTextarea>
-        <BlogSubmit>submit</BlogSubmit>
+        <BlogSubmit type="submit">
+          {defaultData ? 'Update blog' : 'Add blog'}
+        </BlogSubmit>
       </div>
     </BlogContainer>
   );

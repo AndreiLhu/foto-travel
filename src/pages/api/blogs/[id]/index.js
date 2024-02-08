@@ -15,6 +15,17 @@ export default async function handler(request, response) {
     return response.status(200).json(blog);
   }
 
+  if (request.method === 'PATCH') {
+    const blogToUpdate = await Blog.findByIdAndUpdate(
+      id,
+      {
+        $set: request.body,
+      },
+      { new: true }
+    );
+    return response.status(200).json(blogToUpdate);
+  }
+
   if (request.method === 'DELETE') {
     await Blog.findByIdAndDelete(id);
 
