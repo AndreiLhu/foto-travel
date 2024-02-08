@@ -24,7 +24,9 @@ const BlogListLi = styled.li`
 
 const fetcher = (url) => fetch(url).then((response) => response.json());
 export default function BlogList() {
-  const { data, isLoading } = useSWR('/api/blogs', fetcher);
+  const { data, isLoading } = useSWR('/api/blogs', fetcher, {
+    fallbackData: [],
+  });
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -38,7 +40,7 @@ export default function BlogList() {
     <BlogUl>
       {data.map((blog) => (
         <BlogListLi key={blog._id}>
-          <TitleBlog href={`/${blog._id}`}>{blog.title}</TitleBlog>
+          <TitleBlog href={`/blog/${blog._id}`}>{blog.title}</TitleBlog>
           <BlogImage src={blogImage} alt={`Blog image`} />
           <h3>{blog.content}</h3>
         </BlogListLi>

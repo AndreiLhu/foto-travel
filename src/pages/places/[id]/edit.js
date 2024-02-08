@@ -32,7 +32,8 @@ export default function EditPage() {
       });
 
       if (response.ok) {
-        mutate();
+        // mutate();
+        router.push(`/places/${id}`);
       }
     } catch (error) {
       console.log(error.message);
