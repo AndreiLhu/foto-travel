@@ -40,7 +40,7 @@ export default function BlogList() {
     <BlogUl>
       {data.map((blog) => (
         <BlogListLi key={blog._id}>
-          <TitleBlog href={`/${blog._id}`}>{blog.title}</TitleBlog>
+          <TitleBlog href={`/blog/${blog._id}`}>{blog.title}</TitleBlog>
           <BlogImage src={blogImage} alt={`Blog image`} />
           <h3>{blog.content}</h3>
         </BlogListLi>

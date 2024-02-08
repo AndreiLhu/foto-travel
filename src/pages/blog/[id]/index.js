@@ -2,11 +2,12 @@ import useSWR from 'swr';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import blogImage from '../../public/blogImage.jpg';
+import blogImage from '../..//../../public/blogImage.jpg';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { TbArrowBackUp } from 'react-icons/tb';
 import { syncIndexes } from 'mongoose';
+import { TbEdit } from 'react-icons/tb';
 
 const BlogDetailsContainer = styled.div`
   display: flex;
@@ -86,6 +87,15 @@ export default function BlogDetails() {
               <IconsDetailsSpan>
                 <TbArrowBackUp />
               </IconsDetailsSpan>
+            </Link>
+          </button>
+          <button>
+            <Link href={`/blog/${id}/edit`} passHref legacyBehavior>
+              <Link>
+                <IconsDetailsSpan>
+                  <TbEdit />
+                </IconsDetailsSpan>
+              </Link>
             </Link>
           </button>
         </BlogDetailsIcons>

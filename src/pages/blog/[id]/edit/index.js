@@ -35,7 +35,7 @@ export default function EditPage() {
   return (
     <>
       <h2 id="edit-blog">Edit Blog</h2>
-      <Link href={`/blogs/${id}`} passHref legacyBehavior>
+      <Link href={`/blog/${id}`} passHref legacyBehavior>
         <Link>
           <TbArrowBackUp />
         </Link>
